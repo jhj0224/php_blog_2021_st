@@ -11,6 +11,10 @@ class APP__ArticleService {
     return $this->articleRepository->getForPrintArticles();
   }
 
+  public function increaseHit(int $id) {
+    return $this->articleRepository->increaseHit($id);
+  }
+  
   public function getForPrintArticleById(int $id): array|null {
     return $this->articleRepository->getForPrintArticleById($id);
   }

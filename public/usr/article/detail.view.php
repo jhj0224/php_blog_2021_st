@@ -12,6 +12,7 @@ $pageTitle = "게시물 상세내용, ${id}번 게시물";
 <hr>
 
 <div>번호 : <?=$article['id']?></div>
+<div>조회수 : <?=$article['hit']?></div>
 <div>작성날짜 : <?=$article['regDate']?></div>
 <div>수정날짜 : <?=$article['updateDate']?></div>
 <div>제목 : <?=$article['title']?></div>

@@ -6,6 +6,7 @@ USE php_blog_2021;
 # 게시물 테이블 생성
 CREATE TABLE article (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    hit INT(10) UNSIGNED NOT NULL,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
     title CHAR(100) NOT NULL,

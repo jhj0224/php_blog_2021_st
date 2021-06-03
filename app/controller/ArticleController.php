@@ -87,7 +87,7 @@ class APP__UsrArticleController {
       jsHistoryBackExit("번호를 입력해주세요.");
     }
     
-    $article = $this->articleService->getForPrintArticleById($id);
+    $article = $this->articleService->getForPrintArticleById($id);       
 
     if ( $article == null ) {
       jsHistoryBackExit("${id}번 게시물은 존재하지 않습니다.");
@@ -96,6 +96,11 @@ class APP__UsrArticleController {
     require_once App__getViewPath("usr/article/detail");
   }
 
+  public function actionShowHit() {
+    $article = $this->articleService->increaseHit($id);
+    require_once App__getViewPath("usr/article/detail");
+  }
+    
   public function actionShowModify() {
     $id = getIntValueOr($_GET['id'], 0);
 
@@ -111,4 +116,6 @@ class APP__UsrArticleController {
 
     require_once App__getViewPath("usr/article/modify");
   }
+  
+
 }
