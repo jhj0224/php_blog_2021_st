@@ -50,7 +50,7 @@ CREATE TABLE `member` (
     cellphoneNo CHAR(20) NOT NULL
 );
 
-# 테스트 히ㅗ원 생성
+# 테스트 회원 생성
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),

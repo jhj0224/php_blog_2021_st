@@ -14,4 +14,7 @@ class APP__MemberService {
   public function getForPrintMemberById(int $id): array|null {
     return $this->memberRepository->getForPrintMemberById($id);
   }
+  public function getForPrintMemberByJoin(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): array|null {
+    return $this->memberRepository->getForPrintMemberByJoin($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+  }
 }

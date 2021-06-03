@@ -13,7 +13,7 @@ class APP__UsrMemberController {
 
   public function actionDoLogout() {
     unset($_SESSION['loginedMemberId']);
-    jsLocationReplaceExit("../article/list.php");
+    jsLocationReplaceExit("../article/list.php", "로그아웃되었습니다.");
   }
 
   public function actionDoLogin() {
@@ -38,6 +38,24 @@ class APP__UsrMemberController {
     
     $_SESSION['loginedMemberId'] = $member['id'];
     
+    jsLocationReplaceExit("../article/list.php", "{$member['nickname']}님 환영합니다.");    
+  }
+  
+  public function actionShowJoin() {
+    require_once App__getViewPath("usr/member/Join");
+  }
+
+  public function actionDoJoin() {      
+    $loginId = $_GET['loginId'];
+    $loginPw = $_GET['loginPw'];
+    $name = $_GET['name'];
+    $nickname = $_GET['nickname'];
+    $cellphoneNo = $_GET['cellphoneNo'];
+    $email = $_GET['email'];
+    
+    $member = $this->memberService->getForPrintMemberByJoin($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+        
+        
     jsLocationReplaceExit("../article/list.php", "{$member['nickname']}님 환영합니다.");    
   }
 }
