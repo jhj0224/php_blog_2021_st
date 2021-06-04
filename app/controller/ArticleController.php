@@ -93,14 +93,11 @@ class APP__UsrArticleController {
       jsHistoryBackExit("${id}번 게시물은 존재하지 않습니다.");
     }
 
-    require_once App__getViewPath("usr/article/detail");
-  }
+    $this->articleService->increaseHit($id);
 
-  public function actionShowHit() {
-    $article = $this->articleService->increaseHit($id);
     require_once App__getViewPath("usr/article/detail");
   }
-    
+      
   public function actionShowModify() {
     $id = getIntValueOr($_GET['id'], 0);
 

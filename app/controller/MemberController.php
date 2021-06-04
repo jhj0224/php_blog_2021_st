@@ -46,16 +46,22 @@ class APP__UsrMemberController {
   }
 
   public function actionDoJoin() {      
-    $loginId = $_GET['loginId'];
-    $loginPw = $_GET['loginPw'];
-    $name = $_GET['name'];
-    $nickname = $_GET['nickname'];
-    $cellphoneNo = $_GET['cellphoneNo'];
-    $email = $_GET['email'];
+    $loginId = getStrValueOr($_REQUEST['loginId'], "");
+    $oldMember = $this->memberService->getForPrintMemberByLoginId($loginId);
+
+    if ( $oldMember != null ) {
+      jsHistoryBackExit("이미 사용중인 로그인 아이디 입니다.");
+    }
+
+    $loginPw = getStrValueOr($_REQUEST['loginPw'], "");
+
+    $name = getStrValueOr($_REQUEST['name'], "");
+    $nickname = getStrValueOr($_REQUEST['nickname'], "");
+    $cellphoneNo = getStrValueOr($_REQUEST['cellphoneNo'], "");
+    $email = getStrValueOr($_REQUEST['email'], "");
     
-    $member = $this->memberService->getForPrintMemberByJoin($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
-        
-        
-    jsLocationReplaceExit("../article/list.php", "{$member['nickname']}님 환영합니다.");    
+    $id = $this->memberService->join($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+               
+    jsLocationReplaceExit("../article/list.php", "{$nickname}님 환영합니다.");    
   }
 }

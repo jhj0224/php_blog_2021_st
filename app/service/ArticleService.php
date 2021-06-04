@@ -12,7 +12,7 @@ class APP__ArticleService {
   }
 
   public function increaseHit(int $id) {
-    return $this->articleRepository->increaseHit($id);
+    $this->articleRepository->increaseHit($id);
   }
   
   public function getForPrintArticleById(int $id): array|null {

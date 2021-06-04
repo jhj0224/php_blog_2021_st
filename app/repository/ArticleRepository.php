@@ -16,12 +16,12 @@ class APP__ArticleRepository {
     return DB__getRow($sql);
   }
 
-  public function increaseHit(int $id): array|null {
+  public function increaseHit(int $id) {
     $sql = DB__secSql();
     $sql->add("UPDATE article");
     $sql->add("SET hit = hit + 1");
     $sql->add("WHERE id = ?", $id);
-    $id = DB__update($sql);    
+    DB__update($sql);    
   } 
 
   public function writeArticle(string $title, string $body):int {

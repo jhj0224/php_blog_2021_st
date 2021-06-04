@@ -10,6 +10,15 @@ class APP__MemberRepository {
     return DB__getRow($sql);
   }
 
+  public function getForPrintMemberByLoginId(string $loginId): array|null {
+    $sql = DB__secSql();
+    $sql->add("SELECT *");
+    $sql->add("FROM `member` AS M");
+    $sql->add("WHERE M.loginId = ?", $loginId);
+        
+    return DB__getRow($sql);
+  }
+
   public function getForPrintMemberById(int $id): array|null {
     $sql = DB__secSql();
     $sql->add("SELECT M.*");
@@ -18,7 +27,7 @@ class APP__MemberRepository {
     return DB__getRow($sql);
   }
 
-  public function getForPrintMemberByJoin(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): array|null {
+  public function join(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): int {
     $sql = DB__secSql();
     $sql->add("INSERT INTO member");
     $sql->add("SET regDate = NOW()");
@@ -30,9 +39,9 @@ class APP__MemberRepository {
     $sql->add(", cellphoneNo = ?", $cellphoneNo);
     $sql->add(", email = ?", $email);
 
-    $loginId = DB__insert($sql);
+    $id = DB__insert($sql);
     
-    return $loginId;
+    return $id;
     
   }
 }

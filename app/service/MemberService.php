@@ -11,10 +11,14 @@ class APP__MemberService {
     return $this->memberRepository->getForPrintMemberByLoginIdAndLoginPw($loginId, $loginPw);
   }
 
+  public function getForPrintMemberByLoginId(string $loginId): array|null {
+    return $this->memberRepository->getForPrintMemberByLoginId($loginId);
+  }
+
   public function getForPrintMemberById(int $id): array|null {
     return $this->memberRepository->getForPrintMemberById($id);
   }
-  public function getForPrintMemberByJoin(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): array|null {
-    return $this->memberRepository->getForPrintMemberByJoin($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+  public function join(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): int {
+    return $this->memberRepository->join($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
   }
 }
