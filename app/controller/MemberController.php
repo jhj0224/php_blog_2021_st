@@ -42,7 +42,7 @@ class APP__UsrMemberController {
   }
   
   public function actionShowJoin() {
-    require_once App__getViewPath("usr/member/Join");
+    require_once App__getViewPath("usr/member/join");
   }
 
   public function actionDoJoin() {      
